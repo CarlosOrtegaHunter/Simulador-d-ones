@@ -1,0 +1,9 @@
+#Aquest es un comentari
+#Aquest arxiu permet carregar el estat del camp
+#Cada linea es una onda
+#La linea que comença amb ! es la onda que es generara cada vegada
+#que es pulsi la tecla espai
+0 0 0 15 10 1 0 0 0 0 0 0
+#Aquesta font d'ones va més rápid que la velocitat de fase
+0 0 0 15 10 1 0 0 0 0 20 20
+! 15 10 1 0 0 0 0 0 0
