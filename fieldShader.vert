@@ -61,8 +61,6 @@ void main()
 		exp(-distanceToOriginal*ona[i].sdecay/ona[i].A) * 
 		ona[i].A*sin(-ona[i].w * Dt * has_startedf +  PIx2 * distanceToOriginal * has_startedf / ona[i].l +  ona[i].phase * has_startedf);
 
-
-
 		if(u > v) {
 			originalTime = (-sqrt( d*d*(u*u*costh*costh-u*u+v*v) )-d*u*costh+Dt*u*u-Dt*v*v)/(u*u-v*v);
 			originalTimeDelta = max(0, Dt - originalTime);
