@@ -53,6 +53,7 @@ void main()
 		else {
 			originalTime = Dt;
 			distanceToOriginal = d;
+			has_startedf = float(v*Dt >= distanceToOriginal);
 		}
 		
 		height += 
