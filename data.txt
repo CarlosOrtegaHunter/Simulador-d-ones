@@ -4,5 +4,5 @@
 #La linea que comença amb ! es la ona que es generara cada vegada que es polsi la tecla espai
 #0 0 0 15 10 1 0 0 0 0 0 0
 #Aquesta font d'ones va més rápid que la #velocitat de fase
-#20 20 0 15 10 1 0 0 0 0 0 0
+20 20 0 15 10 1 0 0 0 0 0 0
 ! 15 10 0.1 0 0 0 0 0 0

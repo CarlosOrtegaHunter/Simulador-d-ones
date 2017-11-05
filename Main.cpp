@@ -26,8 +26,8 @@ int oldx = 0, oldy = 0; //mouse coords
 
 void displayHelp() {
 	std::cout << std::endl;
+	std::cout << "SIMULADOR I v1.0 -Carlos Ortega H. 2017- Podeu trobar el codi a https://github.com/CarlosOrtegaHunter/Simulador-d-ones" << std::endl;
 	std::cout << "------------------------ HOW TO USE ------------------------" << std::endl;
-	std::cout << "SIMULADOR I -Carlos Ortega H. 2017- Podeu trobar el codi a https://github.com/CarlosOrtegaHunter/Simulador-d-ones" << std::endl;
 	std::cout << "Presioni H per veure aquest dialeg d'ajuda. " << std::endl;
 	std::cout << "Presioni W, S, A, D, +, - per moure. " << std::endl;
 	std::cout << "Presioni P per pausar. " << std::endl;
@@ -98,9 +98,9 @@ void keyboard(unsigned char key, int x, int y) {
 			t_acc += (main_clock.now() - pause_time).count();
 		}
 		else
-			std::cout << "(PAUSA - PAUSE)" << std::endl;
-			pause = !pause;
-			pause_time = main_clock.now();
+			std::cout << "(PAUSA - PAUSE) @ t = " << global_time << " s" << std::endl;
+		pause = !pause;
+		pause_time = main_clock.now();
 		break;
 	case '+':
 		camera.moveForward(10.0f*scale);
@@ -128,18 +128,7 @@ void keyboard(unsigned char key, int x, int y) {
 		glm::vec3 dir = camera.getDirection();
 		float dist = Ray::getDistanceToGround(dir.x, dir.y, dir.z, camera.getPosition().y);
 		glm::vec3 ground = camera.getPosition() + dir*dist;
-		field.addDefaultWave(ground.x / scale, ground.z / scale, global_time);
-		/*
-		field.setHeight(ground.x / scale, ground.z / scale, field.getHeight(ground.x / scale, ground.z / scale) - 0.055f);
-		field.setHeight(ground.x / scale + 1, ground.z / scale, field.getHeight(ground.x / scale + 1, ground.z / scale) - 0.04f);
-		field.setHeight(ground.x / scale, ground.z / scale + 1, field.getHeight(ground.x / scale, ground.z / scale + 1) - 0.04f);
-		field.setHeight(ground.x / scale - 1, ground.z / scale, field.getHeight(ground.x / scale - 1, ground.z / scale) - 0.04f);
-		field.setHeight(ground.x / scale, ground.z / scale - 1, field.getHeight(ground.x / scale, ground.z / scale - 1) - 0.04f);
-		field.setHeight(ground.x / scale + 1, ground.z / scale + 1, field.getHeight(ground.x / scale + 1, ground.z / scale + 1) - 0.02f);
-		field.setHeight(ground.x / scale - 1, ground.z / scale - 1, field.getHeight(ground.x / scale - 1, ground.z / scale - 1) - 0.02f);
-		field.setHeight(ground.x / scale - 1, ground.z / scale + 1, field.getHeight(ground.x / scale - 1, ground.z / scale + 1) - 0.02f);
-		field.setHeight(ground.x / scale + 1, ground.z / scale - 1, field.getHeight(ground.x / scale + 1, ground.z / scale - 1) - 0.02f);
-		*/
+		field.setDefaultWave(ground.x / scale, ground.z / scale, global_time);
 		break;
 	}
 
@@ -224,7 +213,7 @@ void passiveMouseMotion(int x, int y) {
 int main(int argc, char*argv[]) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	GLint w = glutCreateWindow("I trust you will compile");
+	GLint w = glutCreateWindow("Simulador I v1.0");
 	GLenum err = glewInit();
 	if (GLEW_OK != err) {
 		std::cerr << "Error: " << glewGetString(err) << std::endl;
