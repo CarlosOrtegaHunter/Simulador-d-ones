@@ -5,7 +5,7 @@
 #include <iostream>
 #include <glm/glm.hpp>
 /*
-**https://learnopengl.com/#!Getting-started/Shaders
+**La mayor parte del código aquí fue tomado de https://learnopengl.com/#!Getting-started/Shaders
 */
 class Shader {
 public:

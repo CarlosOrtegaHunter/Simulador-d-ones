@@ -55,6 +55,6 @@ public:
 	int Field::getCapacity();
 	void Field::readDataFile();
 	void Field::loadDataSave(float t);
-	void Field::addDefaultWave(float x, float y, float t);
+	void Field::setDefaultWave(float x, float y, float t);
 	void Field::clear();
 };

@@ -58,17 +58,16 @@
 		glUnmapBuffer(GL_UNIFORM_BUFFER);
 
 		glUnmapBuffer(GL_ARRAY_BUFFER);
-		glBindVertexArray(vaoID); //Bind the VAO to draw.
+		glBindVertexArray(vaoID);
 
 		glPolygonMode(GL_FRONT_AND_BACK, mode);
 		glEnable(GL_POLYGON_OFFSET_FILL);
 
-
 		glDrawElements(
-			GL_TRIANGLE_STRIP, // mode
-			indices.size(),    // count
-			GL_UNSIGNED_INT,   // type
-			(void*)0           // element array buffer offset
+			GL_TRIANGLE_STRIP,
+			indices.size(),
+			GL_UNSIGNED_INT,
+			(void*)0
 		);
 		coordinates = (float*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
 		wavesData = (Wave*)glMapBuffer(GL_UNIFORM_BUFFER, GL_WRITE_ONLY);
@@ -79,6 +78,7 @@
 		return fieldShader;
 	}
 	/*
+	*No me funciona del todo correctamente, pero funciona para NxN
 	**https://stackoverflow.com/questions/5915753/generate-a-plane-with-triangle-strips
 	*/
 	void Field::setIndices() {
@@ -92,7 +92,6 @@
 				for (int col = 0; col<WIDTH; col++) {
 					indices[i++] = col + row * WIDTH;
 					indices[i++] = col + (row + 1) * WIDTH;
-					//!!!
 				}
 			}
 			else { // odd rows
@@ -115,11 +114,6 @@
 		return -std::numeric_limits<float>::max();
 	}
 	void Field::addWave(Wave wave) {
-		if (pow(wave.velocity[0], 2) + pow(wave.velocity[1], 2) >= pow(wave.w*wave.l / (2 * M_PI), 2)) {
-			std::cerr << std::endl << "ENG Implementation is ill defined for this behavior; speed is too high." << std::endl;
-			std::cerr << "CAT La implementació no está bé definida per aquest comportament; la velocitat es molt elevada" << std::endl << std::endl;
-			return;
-		}
 		//happens when iterator tops
 		if (wavesDataLength > wavesLimit) {
 			wavesDataIterator = 0;
@@ -201,7 +195,7 @@
 			addWave(v);
 		}
 	}
-	void Field::addDefaultWave(float x, float y, float t) {
+	void Field::setDefaultWave(float x, float y, float t) {
 		Wave w = { { x, y }, t, default.w, default.l, default.A, default.sdecay, default.is_packet, default.packet_l, default.ph, { default.velocity[0], default.velocity[1] } };
 		addWave(w);
 	}
